@@ -2,8 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faGear } from '@fortawesome/free-solid-svg-icons/faGear';
-import { faLocationDot } from '@fortawesome/free-solid-svg-icons/faLocationDot';
-import { faAddressBook } from '@fortawesome/free-solid-svg-icons/faAddressBook';
+import { faGear } from '@fortawesome/free-solid-svg-icons/faGear';
 
 
 const MainPage = () => {
@@ -28,7 +27,6 @@ const MainPage = () => {
 
       
       <View style={[styles.box, styles.redBackground]}>
-      <FontAwesomeIcon icon={faAddressBook} />
         <Text style={styles.text}>Contacts</Text>
       </View>
 
@@ -46,7 +44,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 100,
     borderRadius: 10,
-    marginBottom: 15,
+    marginBottom: 10,
     justifyContent: 'center',
     textAlign: 'center',
     alignItems: 'center',
