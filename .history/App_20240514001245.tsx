@@ -136,19 +136,17 @@ const App = () => {
   };
 
   const handleApplyChanges = () => {
-    setText(newText);
     setApplyChanges(true); 
   };
 
   const handleResetChanges = () => {
-    setApplyChanges(false); 
     setText('');
     setNewText('');
-    setNewTextColor('');
     setNewBackgroundColor('');
     setNewBorderColor('');
     setNewBorderWidth('');
     setNewBorderRadius('');
+    setApplyChanges(false); 
   };
 
   const handleToggleTools = () => {
@@ -217,7 +215,7 @@ const App = () => {
           </>
         )}
         <Button title={showTools ? "Hide Tools" : "Show Tools"} onPress={handleToggleTools} />
-        <View style={[styles.box, { backgroundColor: applyChanges ? newBackgroundColor : '#fff', borderRadius: applyChanges ? parseInt(newBorderRadius) || 0 : 0, borderWidth: applyChanges ? parseInt(newBorderWidth) || 1 : 1, borderColor: applyChanges ? newBorderColor : "#111" }]}>
+        <View style={[styles.box, { backgroundColor: applyChanges ? newBackgroundColor : '', borderRadius: applyChanges ? parseInt(newBorderRadius) || 0 : 0, borderWidth: applyChanges ? parseInt(newBorderWidth) || 1 : 1, borderColor: applyChanges ? newBorderColor : "" }]}>
           <Text style={[styles.boxText, {color: applyChanges ? newTextColor : ''}]}>{text}</Text>
         </View>
       </View>
@@ -273,10 +271,8 @@ const styles = StyleSheet.create({
 
   },
   buttonGroup: {
-    display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    margin: 10,
   },
 });
 

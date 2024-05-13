@@ -217,7 +217,7 @@ const App = () => {
           </>
         )}
         <Button title={showTools ? "Hide Tools" : "Show Tools"} onPress={handleToggleTools} />
-        <View style={[styles.box, { backgroundColor: applyChanges ? newBackgroundColor : '#fff', borderRadius: applyChanges ? parseInt(newBorderRadius) || 0 : 0, borderWidth: applyChanges ? parseInt(newBorderWidth) || 1 : 1, borderColor: applyChanges ? newBorderColor : "#111" }]}>
+        <View style={[styles.box, {  }]}>
           <Text style={[styles.boxText, {color: applyChanges ? newTextColor : ''}]}>{text}</Text>
         </View>
       </View>
@@ -268,15 +268,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: applyChanges ? newBackgroundColor : '#fff', borderRadius: applyChanges ? parseInt(newBorderRadius) || 0 : 0, borderWidth: applyChanges ? parseInt(newBorderWidth) || 1 : 1, borderColor: applyChanges ? newBorderColor : "#111"
   },
   boxText: {
 
   },
   buttonGroup: {
-    display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    margin: 10,
   },
 });
 

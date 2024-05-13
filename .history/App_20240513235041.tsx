@@ -103,48 +103,44 @@ const App = () => {
   const [newBorderColor, setNewBorderColor] = useState('');
   const [newBorderWidth, setNewBorderWidth] = useState('');
   const [newBorderRadius, setNewBorderRadius] = useState('');
-  const [applyChanges, setApplyChanges] = useState(false);
 
   const handleTextChange = (inputText) => {
     setNewText(inputText);
-    setApplyChanges(false); 
   };
 
   const handleTextColorChange = (inputText) => {
     setNewTextColor(inputText);
-    setApplyChanges(false); 
   };
 
   const handleBackgroundChange = (inputText) => {
     setNewBackgroundColor(inputText);
-    setApplyChanges(false); 
   };
 
   const handleBorderColorChange = (inputText) => {
     setNewBorderColor(inputText);
-    setApplyChanges(false); 
   };
 
   const handleBorderWidthChange = (inputText) => {
     setNewBorderWidth(inputText);
-    setApplyChanges(false); 
   };
 
   const handleBorderRadiusChange = (inputText) => {
     setNewBorderRadius(inputText);
-    setApplyChanges(false); 
   };
 
   const handleApplyChanges = () => {
     setText(newText);
-    setApplyChanges(true); 
+    setNewText('');
+    setNewTextColor(newTextColor);
+    setNewBackgroundColor(NewBackgroundColor);
+    setNewBorderColor('');
+    setNewBorderWidth('');
+    setNewBorderRadius('');
   };
 
   const handleResetChanges = () => {
-    setApplyChanges(false); 
     setText('');
     setNewText('');
-    setNewTextColor('');
     setNewBackgroundColor('');
     setNewBorderColor('');
     setNewBorderWidth('');
@@ -217,8 +213,8 @@ const App = () => {
           </>
         )}
         <Button title={showTools ? "Hide Tools" : "Show Tools"} onPress={handleToggleTools} />
-        <View style={[styles.box, { backgroundColor: applyChanges ? newBackgroundColor : '#fff', borderRadius: applyChanges ? parseInt(newBorderRadius) || 0 : 0, borderWidth: applyChanges ? parseInt(newBorderWidth) || 1 : 1, borderColor: applyChanges ? newBorderColor : "#111" }]}>
-          <Text style={[styles.boxText, {color: applyChanges ? newTextColor : ''}]}>{text}</Text>
+        <View style={[styles.box, { backgroundColor: newBackgroundColor, borderRadius: parseInt(newBorderRadius) || 0, borderWidth: parseInt(newBorderWidth) || 1, borderColor: newBorderColor  }]}>
+          <Text style={[styles.boxText, {color: newTextColor}]}>{text}</Text>
         </View>
       </View>
     </ScrollView>
@@ -273,10 +269,8 @@ const styles = StyleSheet.create({
 
   },
   buttonGroup: {
-    display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    margin: 10,
   },
 });
 

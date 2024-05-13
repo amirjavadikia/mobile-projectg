@@ -99,52 +99,48 @@ const App = () => {
   const [showTools, setShowTools] = useState(true);
   const [newText, setNewText] = useState('');
   const [newTextColor, setNewTextColor] = useState('');
-  const [newBackgroundColor, setNewBackgroundColor] = useState('');
+  const [newBackgroundColor, setNewBackgroundColor] = useState('#DDE30F');
   const [newBorderColor, setNewBorderColor] = useState('');
   const [newBorderWidth, setNewBorderWidth] = useState('');
   const [newBorderRadius, setNewBorderRadius] = useState('');
-  const [applyChanges, setApplyChanges] = useState(false);
 
   const handleTextChange = (inputText) => {
     setNewText(inputText);
-    setApplyChanges(false); 
   };
-
-  const handleTextColorChange = (inputText) => {
+  const handleTextColor = (inputText) => {
     setNewTextColor(inputText);
-    setApplyChanges(false); 
   };
 
   const handleBackgroundChange = (inputText) => {
     setNewBackgroundColor(inputText);
-    setApplyChanges(false); 
   };
 
   const handleBorderColorChange = (inputText) => {
     setNewBorderColor(inputText);
-    setApplyChanges(false); 
   };
 
   const handleBorderWidthChange = (inputText) => {
     setNewBorderWidth(inputText);
-    setApplyChanges(false); 
   };
 
   const handleBorderRadiusChange = (inputText) => {
     setNewBorderRadius(inputText);
-    setApplyChanges(false); 
   };
 
   const handleApplyChanges = () => {
     setText(newText);
-    setApplyChanges(true); 
+    setNewTextColor();
+    setNewText('');
+    setNewBackgroundColor('newBackgroundColor');
+    setNewBorderColor('');
+    setNewBorderWidth('');
+    setNewBorderRadius('');
   };
 
   const handleResetChanges = () => {
-    setApplyChanges(false); 
     setText('');
+    setNewTextColor('#fff');
     setNewText('');
-    setNewTextColor('');
     setNewBackgroundColor('');
     setNewBorderColor('');
     setNewBorderWidth('');
@@ -172,7 +168,7 @@ const App = () => {
               <Text style={styles.label}>Text Color:</Text>
               <TextInput
                 style={styles.input}
-                onChangeText={handleTextColorChange}
+                onChangeText={handleTextChange}
                 value={newTextColor}
                 placeholder="Text Color"
               />
@@ -180,12 +176,12 @@ const App = () => {
 
             <Text style={styles.title}>Box Setting</Text>
             <View style={styles.section}>
-              <Text style={styles.label}>Background Color:</Text>
+              <Text style={styles.label}>BackGround Color:</Text>
               <TextInput
                 style={styles.input}
                 onChangeText={handleBackgroundChange}
                 value={newBackgroundColor}
-                placeholder="Background Color"
+                placeholder="BackGround Color"
               />
               <Text style={styles.label}>Border Color:</Text>
               <TextInput
@@ -217,8 +213,8 @@ const App = () => {
           </>
         )}
         <Button title={showTools ? "Hide Tools" : "Show Tools"} onPress={handleToggleTools} />
-        <View style={[styles.box, { backgroundColor: applyChanges ? newBackgroundColor : '#fff', borderRadius: applyChanges ? parseInt(newBorderRadius) || 0 : 0, borderWidth: applyChanges ? parseInt(newBorderWidth) || 1 : 1, borderColor: applyChanges ? newBorderColor : "#111" }]}>
-          <Text style={[styles.boxText, {color: applyChanges ? newTextColor : ''}]}>{text}</Text>
+        <View style={[styles.box, { backgroundColor }]}>
+          <Text>{text}</Text>
         </View>
       </View>
     </ScrollView>
@@ -234,7 +230,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: 100,
-    backgroundColor: '#fff',
+    backgroundColor:"#fff"
   },
   section: {
     width: '80%',
@@ -265,25 +261,18 @@ const styles = StyleSheet.create({
   box: {
     width: '80%',
     height: 100,
-    backgroundColor: '#fff',
+    backgroundColor: '#DDE30F',
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  boxText: {
-
+    
   },
   buttonGroup: {
-    display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    margin: 10,
   },
 });
 
 export default App;
-
-
-
 
 
 

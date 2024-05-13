@@ -273,10 +273,9 @@ const styles = StyleSheet.create({
 
   },
   buttonGroup: {
-    display: 'flex',
+    di
     flexDirection: 'row',
     justifyContent: 'space-between',
-    margin: 10,
   },
 });
 

@@ -103,48 +103,52 @@ const App = () => {
   const [newBorderColor, setNewBorderColor] = useState('');
   const [newBorderWidth, setNewBorderWidth] = useState('');
   const [newBorderRadius, setNewBorderRadius] = useState('');
-  const [applyChanges, setApplyChanges] = useState(false);
+
+  // Temporary states to hold new values
+  const [tempText, setTempText] = useState('');
+  const [tempTextColor, setTempTextColor] = useState('');
+  const [tempBackgroundColor, setTempBackgroundColor] = useState('');
+  const [tempBorderColor, setTempBorderColor] = useState('');
+  const [tempBorderWidth, setTempBorderWidth] = useState('');
+  const [tempBorderRadius, setTempBorderRadius] = useState('');
 
   const handleTextChange = (inputText) => {
-    setNewText(inputText);
-    setApplyChanges(false); 
+    setTempText(inputText);
   };
 
   const handleTextColorChange = (inputText) => {
-    setNewTextColor(inputText);
-    setApplyChanges(false); 
+    setTempTextColor(inputText);
   };
 
   const handleBackgroundChange = (inputText) => {
-    setNewBackgroundColor(inputText);
-    setApplyChanges(false); 
+    setTempBackgroundColor(inputText);
   };
 
   const handleBorderColorChange = (inputText) => {
-    setNewBorderColor(inputText);
-    setApplyChanges(false); 
+    setTempBorderColor(inputText);
   };
 
   const handleBorderWidthChange = (inputText) => {
-    setNewBorderWidth(inputText);
-    setApplyChanges(false); 
+    setTempBorderWidth(inputText);
   };
 
   const handleBorderRadiusChange = (inputText) => {
-    setNewBorderRadius(inputText);
-    setApplyChanges(false); 
+    setTempBorderRadius(inputText);
   };
 
   const handleApplyChanges = () => {
-    setText(newText);
-    setApplyChanges(true); 
+    setText(tempText);
+    setNewText(tempText);
+    setNewTextColor(tempTextColor);
+    setNewBackgroundColor(tempBackgroundColor);
+    setNewBorderColor(tempBorderColor);
+    setNewBorderWidth(tempBorderWidth);
+    setNewBorderRadius(tempBorderRadius);
   };
 
   const handleResetChanges = () => {
-    setApplyChanges(false); 
     setText('');
     setNewText('');
-    setNewTextColor('');
     setNewBackgroundColor('');
     setNewBorderColor('');
     setNewBorderWidth('');
@@ -166,14 +170,14 @@ const App = () => {
               <TextInput
                 style={styles.input}
                 onChangeText={handleTextChange}
-                value={newText}
+                value={tempText}
                 placeholder="Text Contain"
               />
               <Text style={styles.label}>Text Color:</Text>
               <TextInput
                 style={styles.input}
                 onChangeText={handleTextColorChange}
-                value={newTextColor}
+                value={tempTextColor}
                 placeholder="Text Color"
               />
             </View>
@@ -184,28 +188,28 @@ const App = () => {
               <TextInput
                 style={styles.input}
                 onChangeText={handleBackgroundChange}
-                value={newBackgroundColor}
+                value={tempBackgroundColor}
                 placeholder="Background Color"
               />
               <Text style={styles.label}>Border Color:</Text>
               <TextInput
                 style={styles.input}
                 onChangeText={handleBorderColorChange}
-                value={newBorderColor}
+                value={tempBorderColor}
                 placeholder="Border Color"
               />
               <Text style={styles.label}>Border Width:</Text>
               <TextInput
                 style={styles.input}
                 onChangeText={handleBorderWidthChange}
-                value={newBorderWidth}
+                value={tempBorderWidth}
                 placeholder="Border Width"
               />
               <Text style={styles.label}>Border Radius:</Text>
               <TextInput
                 style={styles.input}
                 onChangeText={handleBorderRadiusChange}
-                value={newBorderRadius}
+                value={tempBorderRadius}
                 placeholder="Border Radius"
               />
             </View>
@@ -217,8 +221,8 @@ const App = () => {
           </>
         )}
         <Button title={showTools ? "Hide Tools" : "Show Tools"} onPress={handleToggleTools} />
-        <View style={[styles.box, { backgroundColor: applyChanges ? newBackgroundColor : '#fff', borderRadius: applyChanges ? parseInt(newBorderRadius) || 0 : 0, borderWidth: applyChanges ? parseInt(newBorderWidth) || 1 : 1, borderColor: applyChanges ? newBorderColor : "#111" }]}>
-          <Text style={[styles.boxText, {color: applyChanges ? newTextColor : ''}]}>{text}</Text>
+        <View style={[styles.box, { backgroundColor: newBackgroundColor, borderRadius: parseInt(newBorderRadius) || 0, borderWidth: parseInt(newBorderWidth) || 1, borderColor: newBorderColor  }]}>
+          <Text style={[styles.boxText, {color: newTextColor}]}>{text}</Text>
         </View>
       </View>
     </ScrollView>
@@ -273,15 +277,12 @@ const styles = StyleSheet.create({
 
   },
   buttonGroup: {
-    display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    margin: 10,
   },
 });
 
 export default App;
-
 
 
 

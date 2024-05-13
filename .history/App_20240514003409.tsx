@@ -276,7 +276,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    margin: 10,
+    marginHorizontal: 10,
   },
 });
 

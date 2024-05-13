@@ -141,14 +141,13 @@ const App = () => {
   };
 
   const handleResetChanges = () => {
-    setApplyChanges(false); 
     setText('');
     setNewText('');
-    setNewTextColor('');
     setNewBackgroundColor('');
     setNewBorderColor('');
     setNewBorderWidth('');
     setNewBorderRadius('');
+    setApplyChanges(false); 
   };
 
   const handleToggleTools = () => {
@@ -217,8 +216,8 @@ const App = () => {
           </>
         )}
         <Button title={showTools ? "Hide Tools" : "Show Tools"} onPress={handleToggleTools} />
-        <View style={[styles.box, { backgroundColor: applyChanges ? newBackgroundColor : '#fff', borderRadius: applyChanges ? parseInt(newBorderRadius) || 0 : 0, borderWidth: applyChanges ? parseInt(newBorderWidth) || 1 : 1, borderColor: applyChanges ? newBorderColor : "#111" }]}>
-          <Text style={[styles.boxText, {color: applyChanges ? newTextColor : ''}]}>{text}</Text>
+        <View style={[styles.box, { backgroundColor: applyChanges ? newBackgroundColor : '', borderRadius: applyChanges ? parseInt(newBorderRadius) || 0 : 0, borderWidth: applyChanges ? parseInt(newBorderWidth) || 1 : 1, borderColor: applyChanges ? newBorderColor : "" }]}>
+          <Text style={[styles.boxText, {color: applyChanges ? newTextColor : 'black'}]}>{text}</Text>
         </View>
       </View>
     </ScrollView>
@@ -273,10 +272,8 @@ const styles = StyleSheet.create({
 
   },
   buttonGroup: {
-    display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    margin: 10,
   },
 });
 

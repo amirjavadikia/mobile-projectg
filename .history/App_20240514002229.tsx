@@ -103,52 +103,51 @@ const App = () => {
   const [newBorderColor, setNewBorderColor] = useState('');
   const [newBorderWidth, setNewBorderWidth] = useState('');
   const [newBorderRadius, setNewBorderRadius] = useState('');
-  const [applyChanges, setApplyChanges] = useState(false);
+  const [dirty, setDirty] = useState(false); // New state to track changes
 
   const handleTextChange = (inputText) => {
     setNewText(inputText);
-    setApplyChanges(false); 
+    setDirty(true); // Indicate that changes have been made
   };
 
   const handleTextColorChange = (inputText) => {
     setNewTextColor(inputText);
-    setApplyChanges(false); 
+    setDirty(true);
   };
 
   const handleBackgroundChange = (inputText) => {
     setNewBackgroundColor(inputText);
-    setApplyChanges(false); 
+    setDirty(true);
   };
 
   const handleBorderColorChange = (inputText) => {
     setNewBorderColor(inputText);
-    setApplyChanges(false); 
+    setDirty(true);
   };
 
   const handleBorderWidthChange = (inputText) => {
     setNewBorderWidth(inputText);
-    setApplyChanges(false); 
+    setDirty(true);
   };
 
   const handleBorderRadiusChange = (inputText) => {
     setNewBorderRadius(inputText);
-    setApplyChanges(false); 
+    setDirty(true);
   };
 
   const handleApplyChanges = () => {
     setText(newText);
-    setApplyChanges(true); 
+    setDirty(false); // Reset the dirty state after applying changes
   };
 
   const handleResetChanges = () => {
-    setApplyChanges(false); 
     setText('');
     setNewText('');
-    setNewTextColor('');
     setNewBackgroundColor('');
     setNewBorderColor('');
     setNewBorderWidth('');
     setNewBorderRadius('');
+    setDirty(false); // Also reset the dirty state
   };
 
   const handleToggleTools = () => {
@@ -217,8 +216,8 @@ const App = () => {
           </>
         )}
         <Button title={showTools ? "Hide Tools" : "Show Tools"} onPress={handleToggleTools} />
-        <View style={[styles.box, { backgroundColor: applyChanges ? newBackgroundColor : '#fff', borderRadius: applyChanges ? parseInt(newBorderRadius) || 0 : 0, borderWidth: applyChanges ? parseInt(newBorderWidth) || 1 : 1, borderColor: applyChanges ? newBorderColor : "#111" }]}>
-          <Text style={[styles.boxText, {color: applyChanges ? newTextColor : ''}]}>{text}</Text>
+        <View style={[styles.box, { backgroundColor: dirty ? newBackgroundColor : '', borderRadius: dirty ? parseInt(newBorderRadius) || 0 : 0, borderWidth: dirty ? parseInt(newBorderWidth) || 1 : 1, borderColor: dirty ? newBorderColor : "" }]}>
+          <Text style={[styles.boxText, {color: dirty ? newTextColor : ''}]}>{text}</Text>
         </View>
       </View>
     </ScrollView>
@@ -273,14 +272,13 @@ const styles = StyleSheet.create({
 
   },
   buttonGroup: {
-    display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    margin: 10,
   },
 });
 
 export default App;
+
 
 
 
