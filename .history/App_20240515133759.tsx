@@ -159,11 +159,10 @@ const App = () => {
 
   return (
     <ScrollView contentContainerStyle={styles.scrollViewContent}>
-      {showTools && (<View style={styles.header}>
-      <FontAwesomeIcon icon={faGear} style={styles.headerIcon} />
-      <Text style={styles.headerTitle}>Settings</Text>
-      </View>)}
-      
+      <View style={styles.header}>
+      <FontAwesomeIcon icon={faGear} />
+      <Text>Settings</Text>
+      </View>
       <View style={styles.container}>
         {showTools && (
           <>
@@ -204,7 +203,6 @@ const App = () => {
               <Text style={styles.label}>Border Width:</Text>
               <TextInput
                 style={styles.input}
-                keyboardType={"number-pad"}
                 onChangeText={handleBorderWidthChange}
                 value={newBorderWidth}
                 placeholder="Border Width"
@@ -212,7 +210,6 @@ const App = () => {
               <Text style={styles.label}>Border Radius:</Text>
               <TextInput
                 style={styles.input}
-                keyboardType={"number-pad"}
                 onChangeText={handleBorderRadiusChange}
                 value={newBorderRadius}
                 placeholder="Border Radius"
@@ -258,25 +255,17 @@ const App = () => {
 const styles = StyleSheet.create({
   scrollViewContent: {
     flexGrow: 1,
-    backgroundColor: '#fff'
+    
   },
   header:{
-    backgroundColor: "#7d71df",
+    backgroundColor: "purple",
     height: "8%",
-    alignItems: "center",
-    padding: 20,
-  },
-  headerIcon: {
-    color: '#fff',
-  },
-  headerTitle: {
-    color: "#fff"
   },
   container: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 20,
+    marginTop: 100,
     backgroundColor: '#fff',
   },
   section: {
@@ -289,7 +278,6 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     marginBottom: 10,
-    color: '#e2e2e2',
   },
   label: {
     fontSize: 16,

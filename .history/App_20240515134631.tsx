@@ -159,11 +159,10 @@ const App = () => {
 
   return (
     <ScrollView contentContainerStyle={styles.scrollViewContent}>
-      {showTools && (<View style={styles.header}>
+      <View style={styles.header}>
       <FontAwesomeIcon icon={faGear} style={styles.headerIcon} />
       <Text style={styles.headerTitle}>Settings</Text>
-      </View>)}
-      
+      </View>
       <View style={styles.container}>
         {showTools && (
           <>
@@ -212,7 +211,6 @@ const App = () => {
               <Text style={styles.label}>Border Radius:</Text>
               <TextInput
                 style={styles.input}
-                keyboardType={"number-pad"}
                 onChangeText={handleBorderRadiusChange}
                 value={newBorderRadius}
                 placeholder="Border Radius"

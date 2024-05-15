@@ -159,11 +159,11 @@ const App = () => {
 
   return (
     <ScrollView contentContainerStyle={styles.scrollViewContent}>
-      {showTools && (<View style={styles.header}>
+      {showTools &&}
+      <View style={styles.header}>
       <FontAwesomeIcon icon={faGear} style={styles.headerIcon} />
       <Text style={styles.headerTitle}>Settings</Text>
-      </View>)}
-      
+      </View>
       <View style={styles.container}>
         {showTools && (
           <>

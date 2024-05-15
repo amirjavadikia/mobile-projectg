@@ -92,12 +92,10 @@
 
 
 import React, { useState } from 'react';
-import { View, Text, TextInput, StyleSheet, Button, ScrollView, TouchableOpacity } from 'react-native';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faGear } from '@fortawesome/free-solid-svg-icons/faGear';
+import { View, Text, TextInput, StyleSheet, Button, ScrollView } from 'react-native';
 
 const App = () => {
-  const [text, setText] = useState('Hello World!');
+  const [text, setText] = useState('');
   const [showTools, setShowTools] = useState(true);
   const [newText, setNewText] = useState('');
   const [newTextColor, setNewTextColor] = useState('');
@@ -159,11 +157,6 @@ const App = () => {
 
   return (
     <ScrollView contentContainerStyle={styles.scrollViewContent}>
-      {showTools && (<View style={styles.header}>
-      <FontAwesomeIcon icon={faGear} style={styles.headerIcon} />
-      <Text style={styles.headerTitle}>Settings</Text>
-      </View>)}
-      
       <View style={styles.container}>
         {showTools && (
           <>
@@ -204,7 +197,6 @@ const App = () => {
               <Text style={styles.label}>Border Width:</Text>
               <TextInput
                 style={styles.input}
-                keyboardType={"number-pad"}
                 onChangeText={handleBorderWidthChange}
                 value={newBorderWidth}
                 placeholder="Border Width"
@@ -212,7 +204,6 @@ const App = () => {
               <Text style={styles.label}>Border Radius:</Text>
               <TextInput
                 style={styles.input}
-                keyboardType={"number-pad"}
                 onChangeText={handleBorderRadiusChange}
                 value={newBorderRadius}
                 placeholder="Border Radius"
@@ -225,30 +216,19 @@ const App = () => {
         <View style={styles.buttonGroup}>
               { showTools && (
                 <>
-                <TouchableOpacity 
-               onPress={handleApplyChanges}
-               style={styles.applyButton}
-            >
-              <Text style={styles.applyButtonText}>Apply</Text>
-            </TouchableOpacity>
+                <View style={styles.applyButton}>
+                  <Button title="Apply" onPress={handleApplyChanges} />
+                </View>
 
-                <TouchableOpacity 
-               onPress={handleResetChanges}
-               style={styles.resetButton}
-            >
-              <Text style={styles.resetButtonText}>Reset</Text>
-            </TouchableOpacity>
+                <View style={styles.resetButton}>
+                <Button title="Reset" onPress={handleResetChanges} />
+                </View>
                 </>
               )}
-              <TouchableOpacity 
-               onPress={handleToggleTools}
-               style={styles.showButton}
-            >
-              <Text style={styles.showButtonText}>{showTools ? "Hide Tools" : "Show Tools"}</Text>
-            </TouchableOpacity>
+              <Button title={showTools ? "Hide Tools" : "Show Tools"} onPress={handleToggleTools} />
             </View>
-        <View style={[styles.box, { backgroundColor: applyChanges ? newBackgroundColor : '#dde30f', borderRadius: applyChanges ? parseInt(newBorderRadius) || 0 : 8, borderWidth: applyChanges ? parseInt(newBorderWidth) || 1 : 1, borderColor: applyChanges ? newBorderColor : "#807f1e" }]}>
-          <Text style={[styles.boxText, {color: applyChanges ? newTextColor : '#111'}]}>{text || "Hello World!"}</Text>
+        <View style={[styles.box, { backgroundColor: applyChanges ? newBackgroundColor : '#fff', borderRadius: applyChanges ? parseInt(newBorderRadius) || 0 : 0, borderWidth: applyChanges ? parseInt(newBorderWidth) || 1 : 1, borderColor: applyChanges ? newBorderColor : "#111" }]}>
+          <Text style={[styles.boxText, {color: applyChanges ? newTextColor : ''}]}>{text}</Text>
         </View>
       </View>
     </ScrollView>
@@ -258,25 +238,12 @@ const App = () => {
 const styles = StyleSheet.create({
   scrollViewContent: {
     flexGrow: 1,
-    backgroundColor: '#fff'
-  },
-  header:{
-    backgroundColor: "#7d71df",
-    height: "8%",
-    alignItems: "center",
-    padding: 20,
-  },
-  headerIcon: {
-    color: '#fff',
-  },
-  headerTitle: {
-    color: "#fff"
   },
   container: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 20,
+    marginTop: 100,
     backgroundColor: '#fff',
   },
   section: {
@@ -289,7 +256,6 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     marginBottom: 10,
-    color: '#e2e2e2',
   },
   label: {
     fontSize: 16,
@@ -309,14 +275,12 @@ const styles = StyleSheet.create({
   box: {
     width: '80%',
     height: 100,
-    backgroundColor: '#dde30f',
+    backgroundColor: '#fff',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 30,
-    marginBottom: 30,
   },
   boxText: {
-    fontSize: 18
+
   },
   buttonGroup: {
     display: 'flex',
@@ -325,46 +289,9 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   applyButton: {
-    marginRight: 10,
-    borderRadius: 20,
-    backgroundColor: '#1bf621',
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderColor:"#111",
-    borderWidth:1
+
   },
-  resetButton: {
-    borderRadius: 20,
-    marginRight: 10,
-    backgroundColor: '#2950ef',
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderColor:"#111",
-    borderWidth:1
-  },
-  showButton: {
-    borderRadius: 20,
-    backgroundColor: '#eb2d2e',
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderColor:"#111",
-    borderWidth:1
-  },
-  resetButtonText: {
-    color: '#fff'
-  },
-  applyButtonText: {
-    color: '#fff'
-  },
-  showButtonText: {
-    color: '#fff'
-  }
+  resetB
 });
 
 export default App;
